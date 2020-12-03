@@ -77,13 +77,16 @@ int is_and(char *input_word, int size_word, int line_count)
     // Validating reserved word
     for (i = 0; i < size_word; i++)
     {
-        word[i+1]='\0';
+        word[i + 1] = '\0';
         chr = input_word[i];
 
         // Validate if is char or number
-        if (isalpha(chr)){
+        if (isalpha(chr))
+        {
             chr = toupper(chr);
-        }else{
+        }
+        else
+        {
             i = size_word;
             return INVALID;
         }
@@ -150,7 +153,11 @@ int is_and(char *input_word, int size_word, int line_count)
     if (state == 3)
     {
         file = fopen(output_filename, "a");
-        fprintf(file, "AND\t%i\t%i\n", AND, line_count);
+        fprintf(file, "%s", "AND");
+        fprintf(file, "%c", '\t');
+        fprintf(file, "%i", AND);
+        fprintf(file, "%c", '\t');
+        fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
     }
@@ -169,11 +176,12 @@ int is_and(char *input_word, int size_word, int line_count)
 */
 int check_words(char *input, int size_word, int line_count)
 {
-    
     int response = NULL;
+    check_out_file();
 
-    if ((response = is_and(input, size_word, line_count)) == OK);
-    
+    if ((response = is_and(input, size_word, line_count)) == OK)
+        ;
+
     return response;
 }
 
@@ -208,6 +216,26 @@ void reserved_words(void)
     printf("WHILE: { 0x%X } | { %i } \n", WHILE, WHILE);
     printf("WRITED: { 0x%X } | { %i } \n", WRITED, WRITED);
     printf("WRITEC: { 0x%X } | { %i } \n", WRITEC, WRITEC);
+}
+
+/*
+    Function check and create output file
+        param: void
+*/
+void check_out_file(void)
+{
+    FILE *file;
+
+    if ((file = fopen(output_filename, "r")) == NULL)
+    {
+        file = fopen(output_filename, "w");
+        fprintf(file, "%s", "WORD");
+        fprintf(file, "%c", '\t');
+        fprintf(file, "%s", "CODE");
+        fprintf(file, "%c", '\t');
+        fprintf(file, "%s", "LINE\n");
+        fclose(file);
+    }
 }
 
 #endif
