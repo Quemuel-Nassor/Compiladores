@@ -4,8 +4,8 @@
 #include ".\lib\words.h"
 #include ".\lib\dynamic.h"
 
-int main(void)
-{
+
+int main(void) {
     extern char *output_filename;
     extern char *word;
     char read_chr = '\0';
@@ -15,49 +15,38 @@ int main(void)
 
     source_file = fopen(input_filename, "r");
 
-    //Read file loop
-    do
-    {
+    // Read file loop
+    do {
         read_chr = fgetc(source_file);
 
-        //Resize string dynamically
+        // Resize string dynamically
         resize_string();
 
-        switch (read_chr)
-        {
-
-            case ' ':
-            {
-                if ((int)strlen(word) > 0)
-                {
+        switch (read_chr) {
+            case ' ': {
+                if ((int)strlen(word) > 0) {
                     int r = check_words(word, (int)strlen(word), lineCount);
                     free_string();
                 }
                 break;
             }
 
-            case '\n':
-            {
+            case '\n': {
                 int c = check_words(word, (int)strlen(word), lineCount);
                 free_string();
                 lineCount++;
                 columnCount = 1;
-
                 break;
             }
 
-            case EOF:
-            {
+            case EOF: {
                 int u = check_words(word, (int)strlen(word),lineCount);
                 free_string();
-
                 break;
             }
 
-            default:
-            {
-                if ((int)read_chr != 13 && read_chr != EOF)
-                {
+            default: {
+                if ((int)read_chr != 13 && read_chr != EOF) {
                     word[(int)strlen(word)] = read_chr;
                 }
                 break;

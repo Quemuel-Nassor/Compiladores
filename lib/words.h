@@ -1,6 +1,6 @@
 /*
-    Library to identify reserverd words, manipulate strings
-    and otherwwise tasks how show reserved words code
+    Library to identify reserved words, manipulate strings
+    and other tasks as showing the code of reserved words
     
 	Author: Quemuel Alves Nassor
 	Date: 01/12/20 23:01
@@ -27,31 +27,10 @@ enum RESPONSE_CODES
 /*
     Reserved words codes
 */
-enum RESERVED_WORDS
-{
-    AND = 0x200,
-    BEGIN,
-    CHAR,
-    DIV,
-    DO,
-    ELSE,
-    END,
-    FUNCTION,
-    IF,
-    INT,
-    NOT,
-    OR,
-    PROCEDURE,
-    PROGRAM,
-    READD,
-    READC,
-    REPEAT,
-    THEN,
-    UNTIL,
-    VAR,
-    WHILE,
-    WRITED,
-    WRITEC
+enum RESERVED_WORDS {
+    AND = 0x200, BEGIN, CHAR, DIV, DO, ELSE, END, FUNCTION, IF,
+    INT, NOT, OR, PROCEDURE, PROGRAM, READD, READC, REPEAT, THEN,
+    UNTIL, VAR, WHILE, WRITED, WRITEC
 };
 
 /*
@@ -67,122 +46,88 @@ char *output_filename = "output.txt";
         param: size_word => size of identified word
         param: line_count => line where the word was identified
 */
-int is_and(char *input_word, int size_word, int line_count)
-{
+int is_and(char *input_word, int size_word, int line_count) {
     int i, state = 0;
     FILE *file;
     char chr, word[size_word];
     word[0] = '\0';
 
     // Validating reserved word
-    for (i = 0; i < size_word; i++)
-    {
-        word[i+1]='\0';
+    for (i = 0; i < size_word; i++) {
+        word[i + 1] = '\0';
         chr = input_word[i];
 
         // Validate if is char or number
-        if (isalpha(chr)){
+        if (isalpha(chr)) {
             chr = toupper(chr);
-        }else{
+        } else {
             i = size_word;
             return INVALID;
         }
 
-        switch (chr)
-        {
-        case 'A':
-        {
-            if (state == 0 && strlen(word) == 0)
-            {
-                word[i] = toupper(chr);
-                state = 1;
+        switch (chr) {
+            case 'A': {
+                if (state == 0 && strlen(word) == 0) {
+                    word[i] = toupper(chr);
+                    state = 1;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
             }
-            else
-            {
+
+            case 'N': {
+                if (state == 1 && strlen(word) == 1) {
+                    word[i] = toupper(chr);
+                    state = 2;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            case 'D': {
+                if (state == 2 && strlen(word) == 2) {
+                    word[i] = toupper(chr);
+                    state = 3;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            default: {
                 i = size_word;
                 return INVALID;
+                break;
             }
-
-            break;
-        }
-
-        case 'N':
-        {
-            if (state == 1 && strlen(word) == 1)
-            {
-                word[i] = toupper(chr);
-                state = 2;
-            }
-            else
-            {
-                i = size_word;
-                return INVALID;
-            }
-
-            break;
-        }
-
-        case 'D':
-        {
-            if (state == 2 && strlen(word) == 2)
-            {
-                word[i] = toupper(chr);
-                state = 3;
-            }
-            else
-            {
-                i = size_word;
-                return INVALID;
-            }
-            break;
-        }
-
-        default:
-        {
-            i = size_word;
-            return INVALID;
-            break;
-        }
         }
     }
 
     // Writing reserved word
-    if (state == 3)
-    {
+    if (state == 3) {
         file = fopen(output_filename, "a");
-        fprintf(file, "AND\t%i\t%i\n", AND, line_count);
+        fprintf(file, "%s", "AND");
+        fprintf(file, "%c", '\t');
+        fprintf(file, "%i", AND);
+        fprintf(file, "%c", '\t');
+        fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
-    }
-    else
-    {
+    } else {
         fclose(file);
         return INVALID;
     }
 }
 
 /*
-    Function to check and validate identified words
-        param: input => identified word
-        param: size_word => size of identified word
-        param: line_count => line where the word was identified
-*/
-int check_words(char *input, int size_word, int line_count)
-{
-    
-    int response = NULL;
-
-    if ((response = is_and(input, size_word, line_count)) == OK);
-    
-    return response;
-}
-
-/*
     Function to list reserved words
         param: void
 */
-void reserved_words(void)
-{
+void reserved_words(void) {
     printf("INVALID: { %i } \n", INVALID);
     printf("OK: { %i } \n", OK);
     printf("AND: { 0x%X } | { %i } \n", AND, AND);
@@ -208,6 +153,39 @@ void reserved_words(void)
     printf("WHILE: { 0x%X } | { %i } \n", WHILE, WHILE);
     printf("WRITED: { 0x%X } | { %i } \n", WRITED, WRITED);
     printf("WRITEC: { 0x%X } | { %i } \n", WRITEC, WRITEC);
+}
+
+/*
+    Function check and create output file
+        param: void
+*/
+void check_out_file(void) {
+    FILE *file;
+
+    if ((file = fopen(output_filename, "r")) == NULL) {
+        file = fopen(output_filename, "w");
+        fprintf(file, "%s", "WORD");
+        fprintf(file, "%c", '\t');
+        fprintf(file, "%s", "CODE");
+        fprintf(file, "%c", '\t');
+        fprintf(file, "%s", "LINE\n");
+        fclose(file);
+    }
+}
+
+/*
+    Function to check and validate identified words
+        param: input => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int check_words(char *input, int size_word, int line_count) {
+    int response = NULL;
+    check_out_file();
+
+    if ((response = is_and(input, size_word, line_count)) == OK);
+
+    return response;
 }
 
 #endif
