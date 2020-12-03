@@ -17,8 +17,7 @@ char *word = "\0";
     Function to deallocate and clear a dynamic string
         param: void
 */
-void free_string(void)
-{
+void free_string(void) {
     free(word);
     word = (char *)malloc(sizeof(char));
     word[0] = '\0';
@@ -28,8 +27,7 @@ void free_string(void)
     Function to dynamically resize a string
         param: void
 */
-void resize_string(void)
-{
+void resize_string(void) {
     int size = (int)strlen(word);
     char *old_word = (char *)malloc(size * sizeof(char));
     strcpy(old_word, word);
