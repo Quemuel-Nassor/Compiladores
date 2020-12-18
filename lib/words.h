@@ -40,7 +40,7 @@ enum RESERVED_WORDS {
 /*
     Output filename
 */
-char * output_filename = "output.csv";
+char output_filename[200];
 extern char *word;
 extern char *special_word;
 extern int lineCount;
@@ -2128,7 +2128,7 @@ int is_identifier(char * input_word, int size_word, int line_count) {
             local_word[i] = chr;
         } else if(i > 0 && isalnum(chr)){
             local_word[i] = chr;
-        }else {
+        } else {
             i = size_word;
             return INVALID;
         }
@@ -2161,7 +2161,7 @@ int is_number(char * input_word, int size_word, int line_count) {
         // Validate if is char or number
         if (isdigit(chr)) {
             local_word[i] = chr;
-        }else {
+        } else {
             i = size_word;
             return INVALID;
         }
@@ -2174,8 +2174,6 @@ int is_number(char * input_word, int size_word, int line_count) {
     return OK;
 
 }
-
-// ----------------------------------------------------------------------------------------------
 
 /*
     Function to validate reserved word :=
@@ -2578,11 +2576,8 @@ int is_equal(char * input_word, int size_word, int line_count) {
     }
 }
 
-
-// ----------------------------------------------------------------------------------------------
-
 /*
-    Function to validate reserved word <=
+    Function to validate special chars
         param: input_word => identified char
         param: code => code of informed char
         param: line_count => line where the char was identified
