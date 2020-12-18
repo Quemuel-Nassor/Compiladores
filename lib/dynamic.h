@@ -12,12 +12,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-// Global char pointer
-char * word = "\0";
-char * special_word = "\0";
+// Global char pointers
+char *word = "\0";
+char *special_word = "\0";
 
 /*
-    Function to deallocate and clear a dynamic string
+    Function to deallocate and clear a dynamic string WORD
         param: void
 */
 void free_string_word(void) {
@@ -26,6 +26,10 @@ void free_string_word(void) {
     word[0] = '\0';
 }
 
+/*
+    Function to deallocate and clear a dynamic string SPECIAL_WORD
+        param: void
+*/
 void free_string_special_word(void) {
     free(special_word);
     special_word = (char * ) malloc(sizeof(char));
@@ -33,7 +37,7 @@ void free_string_special_word(void) {
 }
 
 /*
-    Function to dynamically resize a string
+    Function to dynamically resize a string WORD
         param: void
 */
 void resize_string(void) {
@@ -50,7 +54,7 @@ void resize_string(void) {
 }
 
 /*
-    Function to dynamically resize a string
+    Function to dynamically resize a string SPECIAL_WORD
         param: void
 */
 void resize_string_special_word(void) {

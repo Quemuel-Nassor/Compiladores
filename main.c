@@ -13,13 +13,13 @@
 #include ".\lib\words.h"
 
 int lineCount = 1;
-extern char * word;
+extern char *word;
 
 int main(void) {
     setlocale(LC_ALL, "");
 
     char read_chr = '\0';
-    char input_filename[120] = "D:\\OneDrive\\ESCOLA\\FACULDADE\\UNAERP\\Stage_07-2020-2\\Compiladores\\Aulas\\prova02_final\\Compiladores\\source.txt";
+    char *input_filename = "source.txt";
 
     FILE * source_file;
 
@@ -154,7 +154,7 @@ int main(void) {
 
             default: {
                 if (strlen(special_word) == 0) {
-                    is_eof_or_new_line(read_chr);
+                    is_not_eof_or_new_line(read_chr);
                 }
                 break;
             }
