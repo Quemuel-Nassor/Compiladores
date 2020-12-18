@@ -9,20 +9,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#include ".\lib\words.h"
 #include ".\lib\dynamic.h"
+#include ".\lib\words.h"
+
+int lineCount = 1;
+extern char * word;
 
 int main(void) {
     setlocale(LC_ALL, "");
 
-    extern char * output_filename;
-    extern char * word;
-
     char read_chr = '\0';
-    char input_filename[12] = "source.txt";
+    char input_filename[120] = "D:\\OneDrive\\ESCOLA\\FACULDADE\\UNAERP\\Stage_07-2020-2\\Compiladores\\Aulas\\prova02_final\\Compiladores\\source.txt";
 
     FILE * source_file;
-    int lineCount = 1, columnCount = 1;
 
     source_file = fopen(input_filename, "r");
 
@@ -32,44 +31,134 @@ int main(void) {
 
         // Resize string dynamically
         resize_string();
+        resize_string_special_word();
+
+        is_special_chars(read_chr, lineCount);
 
         switch (read_chr) {
-            case ';': {
-                int r = check_words(word, (int) strlen(word), lineCount);
-                free_string();
-                break;
-            }
-
             case ' ': {
-                int r = check_words(word, (int) strlen(word), lineCount);
-                free_string();
+                check_words(word, (int)strlen(word), lineCount);
+                free_string_word();
                 break;
             }
 
             case '\n': {
-                int c = check_words(word, (int) strlen(word), lineCount);
-                free_string();
+                check_words(word, (int)strlen(word), lineCount);
+                free_string_word();
                 lineCount++;
-                columnCount = 1;
                 break;
             }
 
             case EOF: {
-                int u = check_words(word, (int) strlen(word), lineCount);
-                free_string();
+                check_words(word, (int)strlen(word), lineCount);
+                free_string_word();
+                break;
+            }
+
+//            case '<': {
+//                if (strlen(special_word) == 0) {
+//                    check_words(word, (int) strlen(word), lineCount);
+//                    save_special_chars(read_chr, SEMICOLON, lineCount);
+//                    free_string_word();
+//                }
+//                break;
+//            }
+//
+//            case '>': {
+//                if (strlen(special_word) == 0) {
+//                    check_words(word, (int) strlen(word), lineCount);
+//                    save_special_chars(read_chr, POINTER, lineCount);
+//                    free_string_word();
+//                }
+//                break;
+//            }
+//
+//            case '=': {
+//                if (strlen(special_word) == 0) {
+//                    check_words(word, (int) strlen(word), lineCount);
+//                    save_special_chars(read_chr, COMMA, lineCount);
+//                    free_string_word();
+//                }
+//                break;
+//            }
+
+            case ';': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, SEMICOLON, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case '.': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, POINTER, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case ',': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, COMMA, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case '-': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, MINUS, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case '+': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, MORE, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case '*': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, MULTIPLICATION, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case '(': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, OPEN_PARENTHESIS, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case ')': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, CLOSE_PARENTHESIS, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case '[': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, OPEN_BRACKETS, lineCount);
+                free_string_word();
+                break;
+            }
+
+            case ']': {
+                check_words(word, (int) strlen(word), lineCount);
+                save_special_chars(read_chr, CLOSE_BRACKETS, lineCount);
+                free_string_word();
                 break;
             }
 
             default: {
-                if ((int) read_chr != 13 && read_chr != EOF) {
-                    word[(int) strlen(word)] = read_chr;
+                if (strlen(special_word) == 0) {
+                    is_eof_or_new_line(read_chr);
                 }
                 break;
             }
         }
-
-        columnCount++;
-
     } while (read_chr != EOF);
 
     fclose(source_file);

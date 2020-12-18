@@ -16,6 +16,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include ".\lib\dynamic.h"
 
 /*
     Responses codes
@@ -30,13 +31,19 @@ enum RESPONSE_CODES {
 enum RESERVED_WORDS {
     AND = 0x200, BEGIN, CHAR, DIV, DO, ELSE, END, FUNCTION,
     IF, INT, NOT, OR, PROCEDURE, PROGRAM, READD, READC, REPEAT,
-    THEN, UNTIL, VAR, WHILE, WRITED, WRITEC
+    THEN, UNTIL, VAR, WHILE, WRITED, WRITEC, ATTRIBUTION, DISTINCTION,
+    GTE, LTE, POINTER, SEMICOLON, COMMA, MINUS, MORE, MULTIPLICATION,
+    OPEN_PARENTHESIS, CLOSE_PARENTHESIS, OPEN_BRACKETS, CLOSE_BRACKETS,
+    GREAT, LESS, EQUAL
 };
 
 /*
     Output filename
 */
-char * output_filename = "output.csv";
+char * output_filename = "D:\\OneDrive\\ESCOLA\\FACULDADE\\UNAERP\\Stage_07-2020-2\\Compiladores\\Aulas\\prova02_final\\Compiladores\\output.csv";
+extern char * word;
+extern char * special_word;
+extern int lineCount;
 
 /*
     Function to validate reserved word AND
@@ -110,9 +117,9 @@ int is_and(char * input_word, int size_word, int line_count) {
     if (state == 3) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", AND);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -216,9 +223,9 @@ int is_begin(char * input_word, int size_word, int line_count) {
     if (state == 5) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", BEGIN);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -311,9 +318,9 @@ int is_char(char * input_word, int size_word, int line_count) {
     if (state == 4) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", CHAR);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -395,9 +402,9 @@ int is_div(char * input_word, int size_word, int line_count) {
     if (state == 3) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", DIV);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -468,9 +475,9 @@ int is_do(char * input_word, int size_word, int line_count) {
     if (state == 2) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", DO);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -555,9 +562,9 @@ int is_else(char * input_word, int size_word, int line_count) {
     if (state == 4) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", ELSE);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -639,9 +646,9 @@ int is_end(char * input_word, int size_word, int line_count) {
     if (state == 3) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", END);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -770,9 +777,9 @@ int is_function(char * input_word, int size_word, int line_count) {
     if (state == 8) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", FUNCTION);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -843,9 +850,9 @@ int is_if(char * input_word, int size_word, int line_count) {
     if (state == 2) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", IF);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -927,9 +934,9 @@ int is_int(char * input_word, int size_word, int line_count) {
     if (state == 3) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", INT);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1011,9 +1018,9 @@ int is_not(char * input_word, int size_word, int line_count) {
     if (state == 3) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", NOT);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1084,9 +1091,9 @@ int is_or(char * input_word, int size_word, int line_count) {
     if (state == 2) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", OR);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1218,9 +1225,9 @@ int is_procedure(char * input_word, int size_word, int line_count) {
     if (state == 9) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", PROCEDURE);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1338,9 +1345,9 @@ int is_program(char * input_word, int size_word, int line_count) {
     if (state == 7) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", PROGRAM);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1436,9 +1443,9 @@ int is_readd(char * input_word, int size_word, int line_count) {
     if (state == 5) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", READD);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1542,9 +1549,9 @@ int is_readc(char * input_word, int size_word, int line_count) {
     if (state == 5) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", READC);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1651,9 +1658,9 @@ int is_repeat(char * input_word, int size_word, int line_count) {
     if (state == 6) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", REPEAT);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1746,9 +1753,9 @@ int is_then(char * input_word, int size_word, int line_count) {
     if (state == 4) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", THEN);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1852,9 +1859,9 @@ int is_until(char * input_word, int size_word, int line_count) {
     if (state == 5) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", UNTIL);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -1936,9 +1943,9 @@ int is_var(char * input_word, int size_word, int line_count) {
     if (state == 3) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", VAR);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -2042,9 +2049,9 @@ int is_while(char * input_word, int size_word, int line_count) {
     if (state == 5) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", WHILE);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -2159,9 +2166,9 @@ int is_writed(char * input_word, int size_word, int line_count) {
     if (state == 6) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", WRITED);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -2276,9 +2283,553 @@ int is_writec(char * input_word, int size_word, int line_count) {
     if (state == 6) {
         file = fopen(output_filename, "a");
         fprintf(file, "%s", word);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%i", WRITEC);
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i\n", line_count);
+        fclose(file);
+        return OK;
+    } else {
+        fclose(file);
+        return INVALID;
+    }
+}
+
+
+// ----------------------------------------------------------------------------------------------
+
+/*
+    Function to validate reserved word :=
+        param: output_filename => output file to write symbol of reserved word
+        param: input_word => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int is_attribution(char * input_word, int size_word, int line_count) {
+    int i, state = 0;
+    FILE * file;
+    char chr, word[size_word + 1];
+    word[0] = '\0';
+
+    // Validating reserved word
+    for (i = 0; i < size_word; i++) {
+        word[i + 1] = '\0';
+        chr = input_word[i];
+
+        // Validate if is not special char
+        if ((int)chr != 58 && (int)chr != 61) {
+            i = size_word;
+            return INVALID;
+        }
+
+        switch (chr) {
+            case ':': {
+                if (state == 0) {
+                    word[i] = chr;
+                    state = 1;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            case '=': {
+                if (state == 1) {
+                    word[i] = chr;
+                    state = 2;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            default: {
+                i = size_word;
+                return INVALID;
+                break;
+            }
+        }
+    }
+
+    // Writing reserved word
+    if (state == 2) {
+        file = fopen(output_filename, "a");
+        fprintf(file, "%s", word);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i", ATTRIBUTION);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i\n", line_count);
+        fclose(file);
+        return OK;
+    } else {
+        fclose(file);
+        return INVALID;
+    }
+}
+
+/*
+    Function to validate reserved word <>
+        param: output_filename => output file to write symbol of reserved word
+        param: input_word => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int is_distinction(char * input_word, int size_word, int line_count) {
+    int i, state = 0;
+    FILE * file;
+    char chr, word[size_word + 1];
+    word[0] = '\0';
+
+    // Validating reserved word
+    for (i = 0; i < size_word; i++) {
+        word[i + 1] = '\0';
+        chr = input_word[i];
+
+        // Validate if is not special char
+        if ((int)chr != 60 && (int)chr != 62) {
+            i = size_word;
+            return INVALID;
+        }
+
+        switch (chr) {
+            case '<': {
+                if (state == 0) {
+                    word[i] = chr;
+                    state = 1;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            case '>': {
+                if (state == 1) {
+                    word[i] = chr;
+                    state = 2;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            default: {
+                i = size_word;
+                return INVALID;
+                break;
+            }
+        }
+    }
+
+    // Writing reserved word
+    if (state == 2) {
+        file = fopen(output_filename, "a");
+        fprintf(file, "%s", word);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i", DISTINCTION);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i\n", line_count);
+        fclose(file);
+        return OK;
+    } else {
+        fclose(file);
+        return INVALID;
+    }
+}
+
+/*
+    Function to validate reserved word >=
+        param: output_filename => output file to write symbol of reserved word
+        param: input_word => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int is_great_than_equal(char * input_word, int size_word, int line_count) {
+    int i, state = 0;
+    FILE * file;
+    char chr, word[size_word + 1];
+    word[0] = '\0';
+
+    // Validating reserved word
+    for (i = 0; i < size_word; i++) {
+        word[i + 1] = '\0';
+        chr = input_word[i];
+
+        // Validate if is not special char
+        if ((int)chr != 62 && (int)chr != 61) {
+            i = size_word;
+            return INVALID;
+        }
+
+        switch (chr) {
+            case '>': {
+                if (state == 0) {
+                    word[i] = chr;
+                    state = 1;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            case '=': {
+                if (state == 1) {
+                    word[i] = chr;
+                    state = 2;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            default: {
+                i = size_word;
+                return INVALID;
+                break;
+            }
+        }
+    }
+
+    // Writing reserved word
+    if (state == 2) {
+        file = fopen(output_filename, "a");
+        fprintf(file, "%s", word);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i", GTE);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i\n", line_count);
+        fclose(file);
+        return OK;
+    } else {
+        fclose(file);
+        return INVALID;
+    }
+}
+
+/*
+    Function to validate reserved word <=
+        param: output_filename => output file to write symbol of reserved word
+        param: input_word => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int is_less_than_equal(char * input_word, int size_word, int line_count) {
+    int i, state = 0;
+    FILE * file;
+    char chr, word[size_word + 1];
+    word[0] = '\0';
+
+    // Validating reserved word
+    for (i = 0; i < size_word; i++) {
+        word[i + 1] = '\0';
+        chr = input_word[i];
+
+        // Validate if is not special char
+        if ((int)chr != 60 && (int)chr != 61) {
+            i = size_word;
+            return INVALID;
+        }
+
+        switch (chr) {
+            case '<': {
+                if (state == 0) {
+                    word[i] = chr;
+                    state = 1;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            case '=': {
+                if (state == 1) {
+                    word[i] = chr;
+                    state = 2;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            default: {
+                i = size_word;
+                return INVALID;
+                break;
+            }
+        }
+    }
+
+    // Writing reserved word
+    if (state == 2) {
+        file = fopen(output_filename, "a");
+        fprintf(file, "%s", word);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i", LTE);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i\n", line_count);
+        fclose(file);
+        return OK;
+    } else {
+        fclose(file);
+        return INVALID;
+    }
+}
+
+/*
+    Function to validate reserved word =
+        param: output_filename => output file to write symbol of reserved word
+        param: input_word => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int is_great(char * input_word, int size_word, int line_count) {
+    int i, state = 0;
+    FILE * file;
+    char chr, word[size_word + 1];
+    word[0] = '\0';
+
+    // Validating reserved word
+    for (i = 0; i < size_word; i++) {
+        word[i + 1] = '\0';
+        chr = input_word[i];
+
+        // Validate if is not special char
+        if ((int)chr != 62) {
+            i = size_word;
+            return INVALID;
+        }
+
+        switch (chr) {
+            case '>': {
+                if (state == 0) {
+                    word[i] = chr;
+                    state = 1;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            default: {
+                i = size_word;
+                return INVALID;
+                break;
+            }
+        }
+    }
+
+    // Writing reserved word
+    if (state == 1) {
+        file = fopen(output_filename, "a");
+        fprintf(file, "%s", word);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i", GREAT);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i\n", line_count);
+        fclose(file);
+        return OK;
+    } else {
+        fclose(file);
+        return INVALID;
+    }
+}
+
+/*
+    Function to validate reserved word =
+        param: output_filename => output file to write symbol of reserved word
+        param: input_word => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int is_less(char * input_word, int size_word, int line_count) {
+    int i, state = 0;
+    FILE * file;
+    char chr, word[size_word + 1];
+    word[0] = '\0';
+
+    // Validating reserved word
+    for (i = 0; i < size_word; i++) {
+        word[i + 1] = '\0';
+        chr = input_word[i];
+
+        // Validate if is not special char
+        if ((int)chr != 60) {
+            i = size_word;
+            return INVALID;
+        }
+
+        switch (chr) {
+            case '<': {
+                if (state == 0) {
+                    word[i] = chr;
+                    state = 1;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            default: {
+                i = size_word;
+                return INVALID;
+                break;
+            }
+        }
+    }
+
+    // Writing reserved word
+    if (state == 1) {
+        file = fopen(output_filename, "a");
+        fprintf(file, "%s", word);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i", LESS);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i\n", line_count);
+        fclose(file);
+        return OK;
+    } else {
+        fclose(file);
+        return INVALID;
+    }
+}
+
+/*
+    Function to validate reserved word =
+        param: output_filename => output file to write symbol of reserved word
+        param: input_word => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int is_equal(char * input_word, int size_word, int line_count) {
+    int i, state = 0;
+    FILE * file;
+    char chr, word[size_word + 1];
+    word[0] = '\0';
+
+    // Validating reserved word
+    for (i = 0; i < size_word; i++) {
+        word[i + 1] = '\0';
+        chr = input_word[i];
+
+        // Validate if is not special char
+        if ((int)chr != 61) {
+            i = size_word;
+            return INVALID;
+        }
+
+        switch (chr) {
+            case '=': {
+                if (state == 0) {
+                    word[i] = chr;
+                    state = 1;
+                } else {
+                    i = size_word;
+                    return INVALID;
+                }
+                break;
+            }
+
+            default: {
+                i = size_word;
+                return INVALID;
+                break;
+            }
+        }
+    }
+
+    // Writing reserved word
+    if (state == 1) {
+        file = fopen(output_filename, "a");
+        fprintf(file, "%s", word);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i", EQUAL);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i\n", line_count);
+        fclose(file);
+        return OK;
+    } else {
+        fclose(file);
+        return INVALID;
+    }
+}
+
+
+// ----------------------------------------------------------------------------------------------
+
+/*
+    Function to validate reserved word <=
+        param: output_filename => output file to write symbol of reserved word
+        param: input_word => identified word
+        param: size_word => size of identified word
+        param: line_count => line where the word was identified
+*/
+int save_special_chars(char input_word, int code, int line_count) {
+    FILE * file;
+
+    switch (input_word) {
+        case '.': {
+            code = POINTER;
+            break;
+        }
+        case ';': {
+            code = SEMICOLON;
+            break;
+        }
+        case ',': {
+            code = COMMA;
+            break;
+        }
+        case '-': {
+            code = MINUS;
+            break;
+        }
+        case '+': {
+            code = MORE;
+            break;
+        }
+        case '*': {
+            code = MULTIPLICATION;
+            break;
+        }
+        case '(': {
+            code = OPEN_PARENTHESIS;
+            break;
+        }
+        case ')': {
+            code = CLOSE_PARENTHESIS;
+            break;
+        }
+        case '[': {
+            code = OPEN_BRACKETS;
+            break;
+        }
+        case ']': {
+            code = CLOSE_BRACKETS;
+            break;
+        }
+
+        default: {
+            code = INVALID;
+            break;
+        }
+    }
+
+    // Writing reserved input_word
+    if (code != INVALID) {
+        file = fopen(output_filename, "a");
+        fprintf(file, "%c", input_word);
+        fprintf(file, "%c", ';');
+        fprintf(file, "%i", code);
+        fprintf(file, "%c", ';');
         fprintf(file, "%i\n", line_count);
         fclose(file);
         return OK;
@@ -2318,6 +2869,10 @@ void reserved_words(void) {
 	printf("WHILE: { 	0x%X } | { %i } \n", WHILE, WHILE);
 	printf("WRITED: { 	0x%X } | { %i } \n", WRITED, WRITED);
 	printf("WRITEC: { 	0x%X } | { %i } \n", WRITEC, WRITEC);
+    printf("ATTRIBUTION: { 	0x%X } | { %i } \n", ATTRIBUTION, ATTRIBUTION);
+    printf("DISTINCTION: { 	0x%X } | { %i } \n", DISTINCTION, DISTINCTION);
+    printf("GTE: { 	0x%X } | { %i } \n", GTE, GTE);
+    printf("LTE: { 	0x%X } | { %i } \n", LTE, LTE);
 }
 
 /*
@@ -2330,9 +2885,9 @@ void check_out_file(void) {
     if ((file = fopen(output_filename, "r")) == NULL) {
         file = fopen(output_filename, "w");
         fprintf(file, "%s", "WORD");
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%s", "CODE");
-        fprintf(file, "%c", '\t');
+        fprintf(file, "%c", ';');
         fprintf(file, "%s", "LINE\n");
         fclose(file);
     }
@@ -2373,11 +2928,78 @@ int check_words(char * input, int size_word, int line_count) {
         if ((response = is_while(input, size_word, line_count)) == OK);
         if ((response = is_writed(input, size_word, line_count)) == OK);
         if ((response = is_writec(input, size_word, line_count)) == OK);
+        if ((response = is_attribution(input, size_word, line_count)) == OK);
+        if ((response = is_distinction(input, size_word, line_count)) == OK);
+        if ((response = is_great_than_equal(input, size_word, line_count)) == OK);
+        if ((response = is_less_than_equal(input, size_word, line_count)) == OK);
+        if ((response = is_great(input, size_word, line_count)) == OK);
+        if ((response = is_less(input, size_word, line_count)) == OK);
+        if ((response = is_equal(input, size_word, line_count)) == OK);
     } else {
         response = INVALID;
     }
 
     return response;
+}
+
+void validate_end_of_word(char read_chr, int lineCount) {
+    switch (read_chr) {
+        case ' ': {
+            check_words(special_word, (int)strlen(special_word), lineCount);
+            free_string_special_word();
+            break;
+        }
+
+        case '\n': {
+            check_words(special_word, (int)strlen(special_word), lineCount);
+            free_string_special_word();
+            lineCount++;
+            break;
+        }
+
+        case EOF: {
+            check_words(special_word, (int)strlen(special_word), lineCount);
+            free_string_special_word();
+            break;
+        }
+    }
+}
+
+void is_eof_or_new_line(int read_chr) {
+    if ((int)read_chr != 13 && read_chr != EOF) {
+        word[(int) strlen(word)] = read_chr;
+    }
+}
+
+void is_special_chars(char input_word, int lineCount) {
+    switch (input_word) {
+        case ':': {
+            special_word[(int) strlen(special_word)] = input_word;
+            break;
+        }
+
+        case '>': {
+            special_word[(int) strlen(special_word)] = input_word;
+            break;
+        }
+
+        case '<': {
+            special_word[(int) strlen(special_word)] = input_word;
+            break;
+        }
+
+        case '=': {
+            special_word[(int) strlen(special_word)] = input_word;
+            break;
+        }
+
+        default:
+            if (strlen(special_word) == 2) {
+                validate_end_of_word(input_word, lineCount);
+            } else if (strlen(special_word) == 1) {
+                validate_end_of_word(input_word, lineCount);
+            }
+    }
 }
 
 # endif

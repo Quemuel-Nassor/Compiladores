@@ -14,15 +14,22 @@
 
 // Global char pointer
 char * word = "\0";
+char * special_word = "\0";
 
 /*
     Function to deallocate and clear a dynamic string
         param: void
 */
-void free_string(void) {
+void free_string_word(void) {
     free(word);
     word = (char * ) malloc(sizeof(char));
     word[0] = '\0';
+}
+
+void free_string_special_word(void) {
+    free(special_word);
+    special_word = (char * ) malloc(sizeof(char));
+    special_word[0] = '\0';
 }
 
 /*
@@ -40,6 +47,23 @@ void resize_string(void) {
     free(old_word);
 
     word[(size + 1)] = '\0';
+}
+
+/*
+    Function to dynamically resize a string
+        param: void
+*/
+void resize_string_special_word(void) {
+    int size = (int) strlen(special_word);
+    char * old_word = (char * ) malloc(size * sizeof(char));
+
+    strcpy(old_word, special_word);
+    special_word = (char * ) malloc((size + 1) * sizeof(char));
+
+    strcpy(special_word, old_word);
+    free(old_word);
+
+    special_word[(size + 1)] = '\0';
 }
 
 #endif
