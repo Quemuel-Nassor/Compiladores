@@ -1,5 +1,6 @@
 /*
-    Library to manipulate dynamically strings
+    Library to manipulate strings dynamically and
+    handle errors
 
 	Authores:
         Quemuel Alves Nassor
@@ -12,9 +13,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-// Global char pointers
+// Global variables
 char *word = "\0";
 char *special_word = "\0";
+long int stack_parenthesis = 0;
+long int stack_brackets = 0;
 
 /*
     Function to deallocate and clear a dynamic string WORD
@@ -70,4 +73,16 @@ void resize_string_special_word(void) {
     special_word[(size + 1)] = '\0';
 }
 
+/*
+    Function to identificate error
+        param: input_char => identified char
+        param: error_code => identified error code
+        param: line_count => line where the word was identified
+*/
+int error_found(char input_char, int error_code, int line_count){
+    printf("parenthesis stack {%li}, brackets stack {%li}\n",stack_parenthesis,stack_brackets);
+    printf("Unexpected char {%c}, exiting with code {%i} found on line {%i}\n",input_char,error_code,line_count);
+    return EXIT_FAILURE;
+
+}
 #endif
