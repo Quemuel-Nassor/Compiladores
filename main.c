@@ -46,88 +46,98 @@ int main(void) {
 
         switch (read_chr) {
             case ' ': {
-                if(check_words(word, (int)strlen(word), lineCount) != OK) {
-                    return error_found(' ',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found(' ',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 free_string_word();
                 break;
             }
 
             case '\n': {
-                if(check_words(word, (int)strlen(word), lineCount) != OK) {
-                    return error_found('\n',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found('\n',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 free_string_word();
                 lineCount++;
                 break;
             }
 
             case EOF: {
-                if(check_words(word, (int)strlen(word), lineCount) != OK) {
-                    return error_found(EOF,INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found(EOF,INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 free_string_word();
                 break;
             }
 
             case ';': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found(';',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found(';',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, SEMICOLON, lineCount);
                 free_string_word();
                 break;
             }
 
             case '.': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found('.',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found('.',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, POINTER, lineCount);
                 free_string_word();
                 break;
             }
 
             case ',': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found(',',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found(',',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, COMMA, lineCount);
                 free_string_word();
                 break;
             }
 
             case '-': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found('-',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found('-',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, MINUS, lineCount);
                 free_string_word();
                 break;
             }
 
             case '+': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found('+',INVALID,lineCount);;
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found('+',INVALID,lineCount);;
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, MORE, lineCount);
                 free_string_word();
                 break;
             }
 
             case '*': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found('*',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found('*',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, MULTIPLICATION, lineCount);
                 free_string_word();
                 break;
             }
 
             case '(': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found('(',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found('(',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, OPEN_PARENTHESIS, lineCount);
                 free_string_word();
                 stack_parenthesis++;
@@ -135,9 +145,10 @@ int main(void) {
             }
 
             case ')': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found(')',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found(')',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, CLOSE_PARENTHESIS, lineCount);
                 free_string_word();
                 stack_parenthesis--;
@@ -145,9 +156,10 @@ int main(void) {
             }
 
             case '[': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found('[',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found('[',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, OPEN_BRACKETS, lineCount);
                 free_string_word();
                 stack_brackets++;
@@ -155,9 +167,10 @@ int main(void) {
             }
 
             case ']': {
-                if(check_words(word, (int) strlen(word), lineCount) != OK) {
-                    return error_found(']',INVALID,lineCount);
-                }
+                // if(check_words(word, (int)strlen(word), lineCount) != OK) {
+                //     return error_found(']',INVALID,lineCount);
+                // }
+                check_words(word, (int)strlen(word), lineCount);
                 save_special_chars(read_chr, CLOSE_BRACKETS, lineCount);
                 free_string_word();
                 stack_brackets--;

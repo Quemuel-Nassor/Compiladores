@@ -2167,7 +2167,6 @@ int is_number(char * input_word, int size_word, int line_count) {
         }
 
         local_word[i] = chr;
-
     }
 
     save_reserved_word(local_word, NUMBER, line_count);
@@ -2676,103 +2675,102 @@ int check_words(char * input, int size_word, int line_count) {
     check_out_file();
 
     if (size_word > 0) {
-        if (is_and(input, size_word, line_count) == OK){
+        if (is_and(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_begin(input, size_word, line_count) == OK){
+        else if (is_begin(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_char(input, size_word, line_count) == OK){
+        else if (is_char(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_div(input, size_word, line_count) == OK){
+        else if (is_div(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_do(input, size_word, line_count) == OK){
+        else if (is_do(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_else(input, size_word, line_count) == OK){
+        else if (is_else(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_end(input, size_word, line_count) == OK){
+        else if (is_end(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_function(input, size_word, line_count) == OK){
+        else if (is_function(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_if(input, size_word, line_count) == OK){
+        else if (is_if(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_int(input, size_word, line_count) == OK){
+        else if (is_int(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_not(input, size_word, line_count) == OK){
+        else if (is_not(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_or(input, size_word, line_count) == OK){
+        else if (is_or(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_procedure(input, size_word, line_count) == OK){
+        else if (is_procedure(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_program(input, size_word, line_count) == OK){
+        else if (is_program(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_readd(input, size_word, line_count) == OK){
+        else if (is_readd(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_readc(input, size_word, line_count) == OK){
+        else if (is_readc(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_repeat(input, size_word, line_count) == OK){
+        else if (is_repeat(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_then(input, size_word, line_count) == OK){
+        else if (is_then(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_until(input, size_word, line_count) == OK){
+        else if (is_until(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_var(input, size_word, line_count) == OK){
+        else if (is_var(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_while(input, size_word, line_count) == OK){
+        else if (is_while(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_writed(input, size_word, line_count) == OK){
+        else if (is_writed(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_writec(input, size_word, line_count) == OK){
+        else if (is_writec(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_attribution(input, size_word, line_count) == OK){
+        else if (is_attribution(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_distinction(input, size_word, line_count) == OK){
+        else if (is_distinction(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_great_than_equal(input, size_word, line_count) == OK){
+        else if (is_great_than_equal(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_less_than_equal(input, size_word, line_count) == OK){
+        else if (is_less_than_equal(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_great(input, size_word, line_count) == OK){
+        else if (is_great(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_less(input, size_word, line_count) == OK){
+        else if (is_less(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if (is_equal(input, size_word, line_count) == OK){
+        else if (is_equal(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if(is_identifier(input, size_word, line_count) == OK){
+        else if(is_identifier(input, size_word, line_count) == OK) {
             response = OK;
         }
-        else if(is_number(input, size_word, line_count) == OK){
+        else if(is_number(input, size_word, line_count) == OK) {
             response = OK;
         }
-
     } else {
         response = INVALID;
     }
